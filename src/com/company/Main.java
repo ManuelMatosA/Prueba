@@ -69,6 +69,7 @@ public class Main {
                 }
 
                 }
+            //Terminate Close
                 scan.close();
             }
         //Catch Statement
@@ -88,7 +89,7 @@ public class Main {
             print.println("Total number of vowels: " + countVowels);
             //Prints total number of consonants
             print.println("Total number of consonants: " + countConsonant);
-            //Close print
+            //Terminate close
             print.close();
         }
         //Catch statement
