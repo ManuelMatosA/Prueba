@@ -5,7 +5,7 @@ package com.company;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 import java.io.*;
-import java.util.StringTokenizer;
+
 
 //Main Class
 public class Main {
@@ -36,7 +36,7 @@ public class Main {
             while (scan.hasNext()) {
                 current = scan.next();
                 //Replaces special symbols to white space
-                String counter = current.replaceAll("-" + "," + "(" + ")" + ", " + "'"," ");
+                String counter = current.replaceAll("-" + "," +  ", " + "'"," ");
 
                 //If statement that analyzes the longest word
                 if (counter.length() > longestWord.length()) {
