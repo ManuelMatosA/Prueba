@@ -32,26 +32,22 @@ public class Main {
             //Field
             Scanner scan = new Scanner( new File( "lyrics.txt" ) );
 
+            //Iterates through the text file reading line by line
             while (scan.hasNext()) {
                 current = scan.next();
-                String replace = current.replaceAll("-" + "," + "(" + ")" + ", " + "'"," ");
-
-                //Prints out in console the words without
-                StringTokenizer st = new StringTokenizer(current," " + "-" + "," + "(" + ")" + ", ");
-                while(st.hasMoreTokens() ) {
-                    System.out.println(st.nextToken());
-                }
+                //Replaces special symbols to white space
+                String counter = current.replaceAll("-" + "," + "(" + ")" + ", " + "'"," ");
 
                 //If statement that analyzes the longest word
-                if (replace.length() > longestWord.length()) {
+                if (counter.length() > longestWord.length()) {
                     shortestWord = longestWord;
-                    longestWord = replace;
+                    longestWord = counter;
                 }
 
                 //If statement that analyzes the second longest word
-                if (replace.length() < longestWord.length()) {
-                    if (replace.length() > shortestWord.length()) {
-                        shortestWord = replace;
+                if (counter.length() < longestWord.length()) {
+                    if (counter.length() > shortestWord.length()) {
+                        shortestWord = counter;
                     }
                 }
 
@@ -72,7 +68,6 @@ public class Main {
                     }
                 }
 
-
                 }
                 scan.close();
             }
@@ -83,12 +78,17 @@ public class Main {
 
         //Try statement for storing the new file with results
         try {
+            //Creates new file
             PrintWriter print = new PrintWriter("results.txt");
+            //Prints longest word
             print.println("Longest word: " + longestWord);
+            //Prints second longest word
             print.println("Second longest: " + shortestWord);
+            //Prints total numbers of vowels
             print.println("Total number of vowels: " + countVowels);
+            //Prints total number of consonants
             print.println("Total number of consonants: " + countConsonant);
-            print.println("Most repeated word: 111");
+            //Close print
             print.close();
         }
         //Catch statement
