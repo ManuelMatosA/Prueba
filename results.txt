@@ -2,3 +2,4 @@ Longest word: (a-audio)
 Second longest: (sayin',
 Total number of vowels: 468
 Total number of consonants: 720
+Most repeated word: 111

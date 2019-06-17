@@ -29,30 +29,29 @@ public class Main {
 
         //Try statement
         try {
-
             //Field
             Scanner scan = new Scanner( new File( "lyrics.txt" ) );
 
             while (scan.hasNext()) {
                 current = scan.next();
-
-                StringTokenizer st = new StringTokenizer(current," " + "-" + "," + "(" + ")");
+                String replace = current.replaceAll("-" + "," + "(" + ")" + ", " + "'"," ");
 
                 //Prints out in console the words without
+                StringTokenizer st = new StringTokenizer(current," " + "-" + "," + "(" + ")" + ", ");
                 while(st.hasMoreTokens() ) {
                     System.out.println(st.nextToken());
                 }
 
                 //If statement that analyzes the longest word
-                if (current.length() > longestWord.length()) {
+                if (replace.length() > longestWord.length()) {
                     shortestWord = longestWord;
-                    longestWord = current;
+                    longestWord = replace;
                 }
 
                 //If statement that analyzes the second longest word
-                if (current.length() < longestWord.length()) {
-                    if (current.length() > shortestWord.length()) {
-                        shortestWord = current;
+                if (replace.length() < longestWord.length()) {
+                    if (replace.length() > shortestWord.length()) {
+                        shortestWord = replace;
                     }
                 }
 
@@ -89,7 +88,7 @@ public class Main {
             print.println("Second longest: " + shortestWord);
             print.println("Total number of vowels: " + countVowels);
             print.println("Total number of consonants: " + countConsonant);
-            print.println("Most repeated word: ");
+            print.println("Most repeated word: 111");
             print.close();
         }
         //Catch statement
