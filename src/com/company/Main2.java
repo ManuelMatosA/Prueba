@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.nio.charset.Charset;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main2 {
     public static void main(String[] args) {
@@ -20,10 +21,10 @@ public class Main2 {
         String st;
         String maxLine = null;
         String shortLine = null;
-        int maxLength = 0;
-        int shortLength = 0;
-        int lineCount = 0;
         int locationLong = 0, locationShort = 0;
+        int mostWords = 0;
+        int countWords = 0;
+        int leastWords = 0;
 
         try {
 
@@ -41,31 +42,31 @@ public class Main2 {
 
             //While loop that reads line by line until there is nothing left to read
             while ((st = br.readLine()) != null) {
+
                 //Turn all letters to lower case with .toLowerCase method
                 String readingToLower = st.toLowerCase();
 
-                //Longest line conditional
-                if(st.length() > maxLength) {
-                    maxLength = st.length();
-                    shortLength = maxLength;
-                    shortLine = maxLine;
-                    maxLine = st;
-                    locationLong = lineCount;
-                } else if (st.length() < maxLength) { //Shortest line
-                    if (st.length() < shortLength) {
-                        shortLine = st;
-                        shortLength = st.length();
-                        locationShort = lineCount;
-                    }
-                }
-                if (st.contains(".")) {
-                    break;
-                }
-                lineCount++;
 
+                String[] splitter = readingToLower.split(" " );
+                if (splitter.length > mostWords) {
+                    mostWords = splitter.length;
+                    locationLong = countWords;
+                    maxLine = st;
+                }
+
+                if (splitter.length < mostWords) {
+                        leastWords = splitter.length;
+                        locationShort = countWords;
+                        shortLine = st;
+
+
+
+                }
+                countWords++;
 
                 //For loops that initializes a counter that increments until it becomes less  than the variable for the string that stores the contents of the file
                 for (int i = 0; i < st.length(); i++) {
+
 
                     //If statements that allows to only count the vocals
                     if (readingToLower.charAt( i ) == 'a' || readingToLower.charAt( i ) == 'e' || readingToLower.charAt( i ) == 'i' || readingToLower.charAt( i ) == 'o' || readingToLower.charAt( i ) == 'u') {
@@ -93,8 +94,8 @@ public class Main2 {
                 //Print in new txt file total vowels
                 print.println("Total Vowels: " + countVo );
                 //Largest line
-                print.println("The largest line is line "  + locationLong + " \"" + maxLine + "\" with a length of " + maxLength + " characters");
-                print.println("The largest line is line "  + locationShort + " \"" + shortLine + "\" with a length of " + shortLength + " characters");
+                print.println("The largest line is line "  + locationLong + " \"" + maxLine + "\" with a length of " + mostWords + " words");
+                print.println("The shortest line is line "  + locationShort + " \"" + shortLine + "\" with a length of " + leastWords + " words");
                 //Close print
                 print.close();
             }
